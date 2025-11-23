@@ -15,6 +15,9 @@ public:
     // Business Logic
     void registerUser(const User& user);
     void showAllUsers();
+
+    void editUser(const User& user);
+    void removeUser(std::string id);
 };
 
 #endif
