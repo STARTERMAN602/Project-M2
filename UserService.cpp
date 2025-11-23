@@ -30,3 +30,20 @@ void UserService::showAllUsers() {
             << " (" << u.user_role << ")" << std::endl;
     }
 }
+
+void UserService::editUser(const User& user) {
+    // Validasi sederhana
+    User existing = userDAO->getUserById(user.user_id);
+    if (existing.user_id == "") {
+        std::cout << "[ERROR] User ID tidak ditemukan." << std::endl;
+        return;
+    }
+
+    userDAO->updateUser(user); // Panggil DAO
+}
+
+void UserService::removeUser(std::string id) {
+    // Validasi admin tidak boleh hapus diri sendiri (opsional tapi bagus)
+    // Disini kita langsung panggil DAO saja
+    userDAO->deleteUser(id);
+}
